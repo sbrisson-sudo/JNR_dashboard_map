@@ -1,5 +1,7 @@
 // Fichier script.js
 
+var csvData;
+
 $(document).ready(function () {
     // Création de la carte avec Leaflet
     var map = L.map('map').setView([48.8566, 2.3522], 5); // Coordonnées de départ et niveau de zoom
@@ -27,13 +29,13 @@ $(document).ready(function () {
         url: 'data/actions_grand_public_carte.csv',
         dataType: 'text',
         success: function (data) {
-            var parsedData = Papa.parse(data, { header: true, skipEmptyLines: true });
+            var csvData = Papa.parse(data, { header: true, skipEmptyLines: true });
             var markers = L.markerClusterGroup(); // Utilisation du plugin Leaflet.markercluster pour regrouper les marqueurs
 
             var nb_actions = 0;
 
             // Parcours des données et création des marqueurs
-            parsedData.data.forEach(function (item) {
+            csvData.data.forEach(function (item) {
 
                 var lat = parseFloat(item.Lat);
                 var lon = parseFloat(item.Lon);
@@ -43,15 +45,23 @@ $(document).ready(function () {
 
                     nb_actions += 1;
 
+                    var description = item.Descriptif;
+                    const NB_MAX_CHAR = 800;
+                    if (description.length > NB_MAX_CHAR){
+                        description = description.slice(0,NB_MAX_CHAR) + "..."
+                    }
+
                     var popupContent = '<strong>' + item.Nom + '</strong><br><em>' + item.Adresse + '</em><br>'
 
                     if (item.Action_JNR == "True"){
                         popupContent += "Le 13/10/2023, Journée nationale de la résilience" + '<br>'
+                    } else if (item.Action_journaliere == "True") {
+                        popupContent += "Le " + item.Date_debut + '<br>'
                     } else {
                         popupContent += 'Du ' + item.Date_debut + ' au ' + item.Date_fin + '<br>'
                     }
                     
-                    popupContent += item.Descriptif + '<br> <strong>Organisé par :</strong> ' + item.Organisateur + '<br><strong>Risques traités : </strong>' + item.Risques_nat + ", "+ item.Risques_techno ;
+                    popupContent += description + '<br> <strong>Organisé par :</strong> ' + item.Organisateur + '<br><strong>Risques traités : </strong>' + item.Risques_nat + ", "+ item.Risques_techno ;
 
                     if ((item.Is_risque_nat=="True") && (item.Is_risque_techno=="True")) {
                         var marker = L.marker([lat, lon],{icon: riskMult_marker}).bindPopup(popupContent);
@@ -98,7 +108,7 @@ $(document).ready(function () {
                 $(this).prop('Counter', 0).animate({
                 Counter: $(this).text()
                 }, {
-                    duration: 4000,
+                    duration: 2000,
                     easing: 'swing',
                     step: function(now) {
                         $(this).text(Math.ceil(now));
@@ -109,9 +119,6 @@ $(document).ready(function () {
     });
 
     // Boutons pour changer la vue de la carte
-
-    
-
     var locations = [
         { coords: [4.035282, -53.113578], zoom: 7 },   // Guyanne 
         { coords: [-21.125720, 55.535528], zoom: 9 },  // La Réunion
