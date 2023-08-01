@@ -1,7 +1,7 @@
 
 function update_plot_nb_actions(dpt_code) {
     // Charger les données JSON
-    d3.json('../data/nb_actions_dpt.json').then(function(data) {    
+    d3.json('./data/nb_actions_dpt.json').then(function(data) {    
 
         // Récuperer les données du dpt
         var data_dpt = data[dpt_code];
@@ -62,7 +62,7 @@ function update_plot_nb_actions(dpt_code) {
 // Attendre que le DOM soit chargé
 document.addEventListener('DOMContentLoaded', function() {
 
-    update_plot_nb_actions("971");
+    update_plot_nb_actions("64");
 
     // Champ statistiques départementales 
     $("#dropdown_dpt a").on("click", function(event) {
