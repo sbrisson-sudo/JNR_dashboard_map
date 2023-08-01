@@ -4,8 +4,8 @@ var csvData;
 
 $(document).ready(function () {
     // Création de la carte avec Leaflet
-    var map = L.map('map').setView([48.8566, 2.3522], 5); // Coordonnées de départ et niveau de zoom
-
+    var map = L.map('map').setView([47, 2.3522], 6); // Coordonnées de départ et niveau de zoom
+    
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map); // Fond de carte OpenStreetMap
 
     // Création des markers
@@ -124,7 +124,8 @@ $(document).ready(function () {
         { coords: [-21.125720, 55.535528], zoom: 9 },  // La Réunion
         { coords: [16.272048, -61.548002], zoom: 9 },  // Guadeloupe
         { coords: [14.670835, -61.009602], zoom: 10},  // Martinique
-        { coords: [-12.836948, 45.155820], zoom: 10 }    // Mayotte
+        { coords: [-12.836948, 45.155820], zoom: 10 },    // Mayotte
+        { coords: [47, 2.3522], zoom: 6 }    // Métropole
       ];
 
     $('.changeMapViewBtn').each(function(index) {
