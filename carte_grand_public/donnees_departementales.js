@@ -37,7 +37,8 @@ function update_plot_nb_actions(dpt_code) {
             var layout = {
             title: null,
             xaxis: {
-                title: ''
+                title: '',
+                automargin: true
             },
             yaxis: {
                 title: 'Nombre d\'actions en lien',
