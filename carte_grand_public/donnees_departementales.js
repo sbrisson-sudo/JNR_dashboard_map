@@ -7,8 +7,16 @@ function update_plot_nb_actions(dpt_code) {
         var data_dpt = data[dpt_code];
 
         if (data_dpt == null) {
-            $("#graph").html("Pas d'action enregistrée dans le " + dpt_code + " :(")
+            $("#graph").html("Pas d'action enregistrée dans le " + dpt_code + " :(");
+            $("#text_pre_graph").empty();
+        } else if (data_dpt["Nombre actions"] == 0) {
+            $("#graph").html("Pas d'action enregistrée dans le " + dpt_code + " :(");
+            $("#text_pre_graph").empty();
+
         } else {
+
+            // Afficher le nombre d'actions
+            $("#text_pre_graph").html(data_dpt["Nombre actions"] + " action(s) enregistrée(s) dans le " + dpt_code)
 
             // Extraire les données du JSON
             var typesRisques = data_dpt["Type de risque"];
@@ -32,7 +40,7 @@ function update_plot_nb_actions(dpt_code) {
                 title: ''
             },
             yaxis: {
-                title: 'Nombre d\'actions',
+                title: 'Nombre d\'actions en lien',
                 tickformat: 'd', // Afficher des nombres entiers sur l'axe Y
                 range: [0, Math.max(5, Math.max(...nombresActions))]
             },
