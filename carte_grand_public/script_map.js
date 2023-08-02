@@ -85,7 +85,7 @@ $(document).ready(function () {
                 var div = L.DomUtil.create('div', 'info legend');
                 labels = ['<strong>Risques abordés</strong>'],
 
-                labels.push('<i class="bi bi-circle-fill" style="color:#38a9dd"></i> Multirisque');
+                labels.push('<i class="bi bi-circle-fill" style="color:#38a9dd"></i> Multirisques');
                 labels.push('<i class="bi bi-circle-fill" style="color:#72b026"></i> Risques naturels');
                 labels.push('<i class="bi bi-circle-fill" style="color:#d33d2a"></i> Risques technologiques');
 
@@ -125,6 +125,8 @@ $(document).ready(function () {
         { coords: [16.272048, -61.548002], zoom: 9 },  // Guadeloupe
         { coords: [14.670835, -61.009602], zoom: 10},  // Martinique
         { coords: [-12.836948, 45.155820], zoom: 10 },    // Mayotte
+        { coords: [-21.405677, 165.531372], zoom: 8 },    // Nouvelle caledonie
+        { coords: [46.954482, -56.327337], zoom: 10 },    // St pierre et miquelon
         { coords: [47, 2.3522], zoom: 6 }    // Métropole
       ];
 
