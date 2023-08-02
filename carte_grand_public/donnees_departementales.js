@@ -68,27 +68,20 @@ function update_plot_nb_actions(dpt_code) {
     });
 };
 
+function update_dpt_button(dpt_code) {
+    // Charger les données JSON
+    d3.json('./data/departement_libelle.json').then(function(data) {
+        var dpt_name = data[dpt_code];
+        $("#chosen_dpt").html(dpt_name + ` (${dpt_code})`);
+
+    });
+}
+
 // Attendre que le DOM soit chargé
 document.addEventListener('DOMContentLoaded', function() {
 
     update_plot_nb_actions("64");
-
-    // Champ statistiques départementales 
-    $("#dropdown_dpt a").on("click", function(event) {
-
-        event.preventDefault();
-        var selectedOption = $(this).attr("value");
-
-        // change text field
-        var text_dpt = $("#chosen_dpt");
-        text_dpt.html($(this).text())
-
-        // update graph
-        update_plot_nb_actions(selectedOption);
-
-        
-    });
-
+    update_dpt_button("64");
 
   });
   
