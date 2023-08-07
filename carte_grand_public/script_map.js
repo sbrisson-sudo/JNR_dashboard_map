@@ -32,13 +32,24 @@ $(document).ready(function () {
         url: 'data/actions_grand_public_carte.csv',
         dataType: 'text',
         success: function (data) {
+
             var csvData = Papa.parse(data, { header: true, skipEmptyLines: true });
             var markers = L.markerClusterGroup(); // Utilisation du plugin Leaflet.markercluster pour regrouper les marqueurs
 
+            // // Test : on ne garde que les actions traitant d'innondation
+            // var filteredRows = _.filter(csvData, function(row) {
+            //     return row["est_inondations"] === "True";
+            // });
+
+            // console.log(filteredRows)
+            
             var nb_actions = 0;
 
             // Parcours des données et création des marqueurs
             csvData.data.forEach(function (item) {
+            // _.forEach(filteredRows, function (item) {
+        
+                // console.log(item.est_inondations);
 
                 var lat = parseFloat(item.lat);
                 var lon = parseFloat(item.lon);
@@ -144,6 +155,15 @@ $(document).ready(function () {
         { coords: [47, 2.3522], zoom: 6 }    // Métropole
       ];
 
+    var domtom_dptcodes = [
+        "973", // Guyane
+        "974", // La Réunion
+        "971", // La Guadeloupe
+        "972", // Martinique
+        "976", // Mayotte
+    ]
+
+
     $('.changeMapViewBtn').each(function(index) {
         $(this).on('click', function() {
           // Récupérez les coordonnées et le niveau de zoom associés à ce bouton en utilisant l'index de la boucle
@@ -153,6 +173,12 @@ $(document).ready(function () {
     
           // Mettez à jour la vue de la carte avec les nouvelles coordonnées et le nouveau niveau de zoom
           map.setView(coords, zoom);
+
+          // Si il s'agit d'un dom tom on met aussi à jour les stats départementales
+          if (index < domtom_dptcodes.length) {
+            update_plot_nb_actions(domtom_dptcodes[index]);
+            update_dpt_button(domtom_dptcodes[index]);
+          }
         });
     });
 
