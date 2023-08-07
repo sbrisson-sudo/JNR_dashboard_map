@@ -2,6 +2,9 @@
 
 var csvData;
 
+var select_all_risque = true;
+var select_all_public = true;
+
 $(document).ready(function () {
     // Création de la carte avec Leaflet
     var map = L.map('map').setView([47, 2.3522], 6); // Coordonnées de départ et niveau de zoom
@@ -13,17 +16,14 @@ $(document).ready(function () {
 
     // Création des markers
     const riskNat_marker = L.AwesomeMarkers.icon({
-        icon: 'coffee',
         markerColor: 'green'
       });
     
     const riskTEch_marker = L.AwesomeMarkers.icon({
-        icon: 'coffee',
         markerColor: 'red'
       });
     
     const riskMult_marker = L.AwesomeMarkers.icon({
-        icon: 'coffee',
         markerColor: 'blue'
       });
 
@@ -40,41 +40,50 @@ $(document).ready(function () {
             // Parcours des données et création des marqueurs
             csvData.data.forEach(function (item) {
 
-                var lat = parseFloat(item.Lat);
-                var lon = parseFloat(item.Lon);
+                var lat = parseFloat(item.lat);
+                var lon = parseFloat(item.lon);
+
+                // console.log(`adding marker at ${lat},${lon}`);
 
                 // Vérification si les coordonnées sont valides (pas NaN)
                 if (!isNaN(lat) && !isNaN(lon)) {
 
                     nb_actions += 1;
 
-                    var description = item.Descriptif;
+                    var description = item.description;
                     const NB_MAX_CHAR = 800;
                     if (description.length > NB_MAX_CHAR){
                         description = description.slice(0,NB_MAX_CHAR) + "..."
                     }
 
-                    var popupContent = '<strong>' + item.Nom + '</strong><br><em>' + item.Adresse + '</em><br>'
-
-                    if (item.Action_JNR == "True"){
-                        popupContent += "Le 13/10/2023, Journée nationale de la résilience" + '<br>'
-                    } else if (item.Action_journaliere == "True") {
-                        popupContent += "Le " + item.Date_debut + '<br>'
+                    var popupContent = '<strong>' + item.nom + '</strong><br><em>' + item.adresse + '</em><br>'
+                    
+                    if (item.date_debut == item.date_fin) {
+                        if (item.date_debut == "2023-10-13") {
+                            popupContent += "Le 13/10/2023, Journée nationale de la résilience" + '<br>'
+                        } else {
+                            popupContent += "Le " + item.date_debut + '<br>'
+                        }
                     } else {
-                        popupContent += 'Du ' + item.Date_debut + ' au ' + item.Date_fin + '<br>'
+                        popupContent += 'Du ' + item.date_debut + ' au ' + item.date_fin + '<br>'
                     }
                     
-                    popupContent += description + '<br> <strong>Organisé par :</strong> ' + item.Organisateur + '<br><strong>Risques traités : </strong>' + item.Risques_nat + ", "+ item.Risques_techno ;
+                    popupContent += '<strong>Organisé par :</strong> ' + item.organisateur + '<br><strong>Risques traités : </strong>' + item.risques_naturels + ", "+ item.risques_technologiques ;
 
-                    if ((item.Is_risque_nat=="True") && (item.Is_risque_techno=="True")) {
+                    if ((item.est_risques_naturels=="True") && (item.est_risques_technologiques=="True")) {
                         var marker = L.marker([lat, lon],{icon: riskMult_marker}).bindPopup(popupContent);
-                    } else if (item.Is_risque_nat=="True") {
+                    } else if (item.est_risques_naturels=="True") {
                         var marker = L.marker([lat, lon],{icon: riskNat_marker}).bindPopup(popupContent);
                     } else {
                         var marker = L.marker([lat, lon],{icon: riskTEch_marker}).bindPopup(popupContent);
                     }
 
                     markers.addLayer(marker);
+
+                    // console.log(`marker added at ${lat},${lon}`);
+                    // console.log(`Action ${item.nom} : lat or lon is not nan`);
+                } else {
+                    // console.log(`Action ${item.nom} : lat or lon is nan`);
                 }
             });
 
@@ -102,6 +111,8 @@ $(document).ready(function () {
                 return div;
             };
             legend.addTo(map);
+
+            console.log(`${nb_actions} actions dénombrées`)
 
             // Sélectionner l'élément avec la classe "counter-count" et mettre à jour son texte avec le nombre d'entrées
             $('.counter-count').text(nb_actions);
@@ -281,8 +292,8 @@ $(document).ready(function () {
             markerColor: 'black'
           });        
 
-        var marker = L.marker([latitude, longitude],{icon: myPosition_marker});
-        map.addLayer(marker);
+        // var marker = L.marker([latitude, longitude],{icon: myPosition_marker});
+        // map.addLayer(marker);
         
 
         // Mise à jour des statistiques départementales
@@ -306,11 +317,53 @@ $(document).ready(function () {
             checkboxValues[this.id] = this.checked;
         });
 
-
     }
 
     // Attacher la fonction onSubmitForm à l'événement submit du formulaire
     document.getElementById('filterForm').addEventListener('submit', onSubmitFilterForm);
+
+
+    
+    // bouttons tout selectionner / deselectionner
+    $("#deselect_risques").click(function() {
+
+        if (select_all_risque) {
+            // Changer le texte du bouton
+            $(this).text("Tout sélectionner");
+            // Changer les cases à cocher à unchecked
+            $("#select_risques_form input[type='checkbox']").prop("checked", false);
+            // Changer la valeur de la variable globale 
+            select_all_risque = false
+        } else {
+            $(this).text("Tout désélectionner");
+            $("#select_risques_form input[type='checkbox']").prop("checked", true);
+            select_all_risque = true
+        }
+            
+    });
+
+    $("#deselect_publics").click(function() {
+
+        if (select_all_risque) {
+            // Changer le texte du bouton
+            $(this).text("Tout sélectionner");
+            // Changer les cases à cocher à unchecked
+            $("#select_publics_form input[type='checkbox']").prop("checked", false);
+            // Changer la valeur de la variable globale 
+            select_all_risque = false
+        } else {
+            $(this).text("Tout désélectionner");
+            $("#select_publics_form input[type='checkbox']").prop("checked", true);
+            select_all_risque = true
+        }
+            
+    });
+    
+
+        
+    
+
+
 
 
 

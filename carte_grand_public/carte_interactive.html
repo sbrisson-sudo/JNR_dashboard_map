@@ -72,7 +72,7 @@
        <script src="js/plotly-latest.min.js"></script>
 
         <!-- Inclure Danfo.js via CDN -->
-        <script src="https://cdn.jsdelivr.net/npm/danfojs-node@1.1.0/dist/danfo.min.js"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/danfojs-node@1.1.0/dist/danfo.min.js"></script> -->
 
    
     
@@ -123,8 +123,10 @@
                 <form id="filterForm">
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="form-group mb-3">
-                                <label><strong>Risques traités :</strong> </label>
+                            <div class="form-group mb-3"  id="select_risques_form">
+
+                                <label class="mb-2"><strong>Risques traités :</strong> </label>
+
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="inondations" checked>
                                     <label class="form-check-label" for="inondations">Inondations</label>
@@ -177,12 +179,19 @@
                                     <input type="checkbox" class="form-check-input" id="transport_de_matieres_dangereuses" checked>
                                     <label class="form-check-label" for="transport_de_matieres_dangereuses">Transport de matières dangereuses</label>
                                 </div>
+
+                                <div id="deselect_risques" type="button" class="btn btn-light mt-2">
+                                    Tout désélectionner
+                                </div>
+
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="form-group"> 
+                            <div class="form-group" id="select_publics_form"> 
                                 <!--Tous public, Famille, Jeune public, Séniors-->
-                                <label><strong>Public ciblé :</strong></label>
+
+                                <label class="mb-2"><strong>Public ciblé :</strong></label>
+
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="toutPublic" checked>
                                     <label class="form-check-label" for="tout-public">Tout public</label>
@@ -199,6 +208,12 @@
                                     <input type="checkbox" class="form-check-input" id="seniors" checked>
                                     <label class="form-check-label" for="seniors">Séniors</label>
                                 </div>
+
+                                <div id="deselect_publics" type="button" class="btn btn-light mt-2">
+                                    Tout désélectionner
+                                </div>
+
+
                             </div>
                         </div>
                     </div>
