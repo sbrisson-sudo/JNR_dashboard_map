@@ -34,6 +34,24 @@ $(document).ready(function () {
         success: function (data) {
 
             var csvData = Papa.parse(data, { header: true, skipEmptyLines: true });
+
+            // On parse les colonnes de booléens et de flottant 
+            var float_cols = ["lat","lon"]
+            var bool_cols = ["est_risques_naturels","est_risques_technologiques","est_inondations","est_feux_de_foret","est_tempete_cyclone","est_seisme","est_eruption_volcanique","est_mouvement_de_terrain","est_risques_littoraux","est_avalanche","est_radon","est_accidents_industriels","est_accidents_nucleaires","est_rupture_de_barrage","est_transport_de_matieres_dangereuses","est_tous_public","est_famille","est_jeune_public","est_seniors"]
+            
+            csvData.data.forEach(function(row) {
+
+                float_cols.forEach(function(col_name) {
+                    row[col_name] = parseFloat(row[col_name])
+                })
+
+                // Convertir les valeurs "True" et "False" en booléens
+                bool_cols.forEach(function(col_name) {
+                    row[col_name] = row[col_name] === "True" ? true : false
+                })
+    
+            });
+
             var markers = L.markerClusterGroup(); // Utilisation du plugin Leaflet.markercluster pour regrouper les marqueurs
 
             // // Test : on ne garde que les actions traitant d'innondation
@@ -49,12 +67,8 @@ $(document).ready(function () {
             csvData.data.forEach(function (item) {
             // _.forEach(filteredRows, function (item) {
         
-                // console.log(item.est_inondations);
-
-                var lat = parseFloat(item.lat);
-                var lon = parseFloat(item.lon);
-
-                // console.log(`adding marker at ${lat},${lon}`);
+                var lat = item.lat;
+                var lon = item.lon;
 
                 // Vérification si les coordonnées sont valides (pas NaN)
                 if (!isNaN(lat) && !isNaN(lon)) {
@@ -81,9 +95,9 @@ $(document).ready(function () {
                     
                     popupContent += '<strong>Organisé par :</strong> ' + item.organisateur + '<br><strong>Risques traités : </strong>' + item.risques_naturels + ", "+ item.risques_technologiques ;
 
-                    if ((item.est_risques_naturels=="True") && (item.est_risques_technologiques=="True")) {
+                    if (item.est_risques_naturels && item.est_risques_technologiques) {
                         var marker = L.marker([lat, lon],{icon: riskMult_marker}).bindPopup(popupContent);
-                    } else if (item.est_risques_naturels=="True") {
+                    } else if (item.est_risques_naturels) {
                         var marker = L.marker([lat, lon],{icon: riskNat_marker}).bindPopup(popupContent);
                     } else {
                         var marker = L.marker([lat, lon],{icon: riskTEch_marker}).bindPopup(popupContent);
@@ -91,8 +105,6 @@ $(document).ready(function () {
 
                     markers.addLayer(marker);
 
-                    // console.log(`marker added at ${lat},${lon}`);
-                    // console.log(`Action ${item.nom} : lat or lon is not nan`);
                 } else {
                     // console.log(`Action ${item.nom} : lat or lon is nan`);
                 }
