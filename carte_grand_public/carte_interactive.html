@@ -122,7 +122,6 @@
                 <div id="error-message" class="text-danger"></div>
 
                 <h4 class="mt-3">Qu'est ce qui m'intéresse ?</h4>
-                <div><em>Non implémenté</em></div>
                 <form id="filterForm">
                     <div class="row">
                         <div class="col-md-6">
@@ -131,55 +130,55 @@
                                 <label class="mb-2"><strong>Risques traités :</strong> </label>
 
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="inondations" checked>
+                                    <input type="checkbox" class="form-check-input" id="inondations">
                                     <label class="form-check-label" for="inondations">Inondations</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="feux_de_foret" checked>
+                                    <input type="checkbox" class="form-check-input" id="feux_de_foret">
                                     <label class="form-check-label" for="feux_de_foret">Feux de forêt</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="tempete_cyclone" checked>
+                                    <input type="checkbox" class="form-check-input" id="tempete_cyclone">
                                     <label class="form-check-label" for="tempete_cyclone">Tempête/cyclone</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="seisme" checked>
+                                    <input type="checkbox" class="form-check-input" id="seisme">
                                     <label class="form-check-label" for="seisme">Séisme</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="eruption_volcanique" checked>
+                                    <input type="checkbox" class="form-check-input" id="eruption_volcanique">
                                     <label class="form-check-label" for="eruption_volcanique">Éruption volcanique</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="mouvement_de_terrain" checked>
+                                    <input type="checkbox" class="form-check-input" id="mouvement_de_terrain">
                                     <label class="form-check-label" for="mouvement_de_terrain">Mouvement de terrain</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="risques_littoraux" checked>
+                                    <input type="checkbox" class="form-check-input" id="risques_littoraux">
                                     <label class="form-check-label" for="risques_littoraux">Risques littoraux</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="avalanche" checked>
+                                    <input type="checkbox" class="form-check-input" id="avalanche">
                                     <label class="form-check-label" for="avalanche">Avalanche</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="radon" checked>
+                                    <input type="checkbox" class="form-check-input" id="radon">
                                     <label class="form-check-label" for="radon">Radon</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="accidents_industriels" checked>
+                                    <input type="checkbox" class="form-check-input" id="accidents_industriels">
                                     <label class="form-check-label" for="accidents_industriels">Accidents industriels</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="accidents_nucleaires" checked>
+                                    <input type="checkbox" class="form-check-input" id="accidents_nucleaires">
                                     <label class="form-check-label" for="accidents_nucleaires">Accidents nucléaires</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="rupture_de_barrage" checked>
+                                    <input type="checkbox" class="form-check-input" id="rupture_de_barrage">
                                     <label class="form-check-label" for="rupture_de_barrage">Rupture de barrage</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="transport_de_matieres_dangereuses" checked>
+                                    <input type="checkbox" class="form-check-input" id="transport_de_matieres_dangereuses">
                                     <label class="form-check-label" for="transport_de_matieres_dangereuses">Transport de matières dangereuses</label>
                                 </div>
 
@@ -196,19 +195,19 @@
                                 <label class="mb-2"><strong>Public ciblé :</strong></label>
 
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="toutPublic" checked>
+                                    <input type="checkbox" class="form-check-input" id="tous_public">
                                     <label class="form-check-label" for="tout-public">Tout public</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="famille" checked>
+                                    <input type="checkbox" class="form-check-input" id="famille">
                                     <label class="form-check-label" for="famille">Famille</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="jeunePublic" checked>
+                                    <input type="checkbox" class="form-check-input" id="jeune_public">
                                     <label class="form-check-label" for="jeunePublic">Jeune public</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="seniors" checked>
+                                    <input type="checkbox" class="form-check-input" id="seniors">
                                     <label class="form-check-label" for="seniors">Séniors</label>
                                 </div>
 
@@ -223,6 +222,7 @@
                     <button type="submit" class="btn btn-primary">Filtrer les actions affichées</button>
                 </form>
 
+                <div class="mt-2" id="filter_action_counter"></div>
 
             </div>
 

@@ -1,31 +1,127 @@
 // Fichier script.js
 
+// global variables 
 var csvData;
+var map;
+var markers = L.markerClusterGroup();
 
 var select_all_risque = true;
 var select_all_public = true;
 
+// Création des markers
+const riskNat_marker = L.AwesomeMarkers.icon({
+    markerColor: 'green'
+});
+
+const riskTEch_marker = L.AwesomeMarkers.icon({
+    markerColor: 'red'
+});
+
+const riskMult_marker = L.AwesomeMarkers.icon({
+    markerColor: 'blue'
+});
+
+// Function for filter the list returned by papa parse : intersection
+function filter_columns_AND(data, col_names) {
+
+    col_names.forEach(function(col) {
+        data = data.filter(i => i[col])
+    })
+
+    return data;
+
+};
+
+// Function for filter the list returned by papa parse : union
+function filter_columns_OR(data, col_names) {
+
+    var values;
+
+    data = data.filter(function(i) {
+
+        values = [];
+        // On récupère les valeurs prises par les différentes colonnes
+        col_names.forEach(col => values.push(i[col]))
+
+        return values.includes(true);
+
+    });
+
+    return data;
+
+};
+
+
+// function for plotting markers
+function plot_actions_markers(data) {
+
+    var nb_actions = 0;
+
+    // effacement des marqueurs précédents
+    markers.clearLayers()
+
+    // Parcours des données et création des marqueurs
+    data.forEach(function (item) {
+
+        var lat = item.lat;
+        var lon = item.lon;
+
+        // Vérification si les coordonnées sont valides (pas NaN)
+        if (!isNaN(lat) && !isNaN(lon)) {
+
+            nb_actions += 1;
+
+            var description = item.description;
+            const NB_MAX_CHAR = 800;
+            if (description.length > NB_MAX_CHAR){
+                description = description.slice(0,NB_MAX_CHAR) + "..."
+            }
+
+            var popupContent = '<strong>' + item.nom + '</strong><br><em>' + item.adresse + '</em><br>'
+            
+            if (item.date_debut == item.date_fin) {
+                if (item.date_debut == "2023-10-13") {
+                    popupContent += "Le 13/10/2023, Journée nationale de la résilience" + '<br>'
+                } else {
+                    popupContent += "Le " + item.date_debut + '<br>'
+                }
+            } else {
+                popupContent += 'Du ' + item.date_debut + ' au ' + item.date_fin + '<br>'
+            }
+            
+            popupContent += '<strong>Organisé par :</strong> ' + item.organisateur + '<br><strong>Risques traités : </strong>' + item.risques_naturels + ", "+ item.risques_technologiques + '<br><strong>Public ciblé : </strong>' + item.public_cible;
+
+            if (item.est_risques_naturels && item.est_risques_technologiques) {
+                var marker = L.marker([lat, lon],{icon: riskMult_marker}).bindPopup(popupContent);
+            } else if (item.est_risques_naturels) {
+                var marker = L.marker([lat, lon],{icon: riskNat_marker}).bindPopup(popupContent);
+            } else {
+                var marker = L.marker([lat, lon],{icon: riskTEch_marker}).bindPopup(popupContent);
+            }
+
+            markers.addLayer(marker);
+
+        }
+    });
+
+    map.addLayer(markers); // Ajout des marqueurs à la carte
+
+    return nb_actions;
+
+};
+
+
 $(document).ready(function () {
+
     // Création de la carte avec Leaflet
-    var map = L.map('map').setView([47, 2.3522], 6); // Coordonnées de départ et niveau de zoom
+    map = L.map('map').setView([47, 2.3522], 6); // Coordonnées de départ et niveau de zoom
     
     // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map); // Fond de carte OpenStreetMap
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    // Création des markers
-    const riskNat_marker = L.AwesomeMarkers.icon({
-        markerColor: 'green'
-      });
-    
-    const riskTEch_marker = L.AwesomeMarkers.icon({
-        markerColor: 'red'
-      });
-    
-    const riskMult_marker = L.AwesomeMarkers.icon({
-        markerColor: 'blue'
-      });
+
 
     // Chargement du fichier CSV
     $.ajax({
@@ -33,7 +129,7 @@ $(document).ready(function () {
         dataType: 'text',
         success: function (data) {
 
-            var csvData = Papa.parse(data, { header: true, skipEmptyLines: true });
+            csvData = Papa.parse(data, { header: true, skipEmptyLines: true });
 
             // On parse les colonnes de booléens et de flottant 
             var float_cols = ["lat","lon"]
@@ -52,65 +148,8 @@ $(document).ready(function () {
     
             });
 
-            var markers = L.markerClusterGroup(); // Utilisation du plugin Leaflet.markercluster pour regrouper les marqueurs
-
-            // // Test : on ne garde que les actions traitant d'innondation
-            // var filteredRows = _.filter(csvData, function(row) {
-            //     return row["est_inondations"] === "True";
-            // });
-
-            // console.log(filteredRows)
-            
-            var nb_actions = 0;
-
-            // Parcours des données et création des marqueurs
-            csvData.data.forEach(function (item) {
-            // _.forEach(filteredRows, function (item) {
-        
-                var lat = item.lat;
-                var lon = item.lon;
-
-                // Vérification si les coordonnées sont valides (pas NaN)
-                if (!isNaN(lat) && !isNaN(lon)) {
-
-                    nb_actions += 1;
-
-                    var description = item.description;
-                    const NB_MAX_CHAR = 800;
-                    if (description.length > NB_MAX_CHAR){
-                        description = description.slice(0,NB_MAX_CHAR) + "..."
-                    }
-
-                    var popupContent = '<strong>' + item.nom + '</strong><br><em>' + item.adresse + '</em><br>'
-                    
-                    if (item.date_debut == item.date_fin) {
-                        if (item.date_debut == "2023-10-13") {
-                            popupContent += "Le 13/10/2023, Journée nationale de la résilience" + '<br>'
-                        } else {
-                            popupContent += "Le " + item.date_debut + '<br>'
-                        }
-                    } else {
-                        popupContent += 'Du ' + item.date_debut + ' au ' + item.date_fin + '<br>'
-                    }
-                    
-                    popupContent += '<strong>Organisé par :</strong> ' + item.organisateur + '<br><strong>Risques traités : </strong>' + item.risques_naturels + ", "+ item.risques_technologiques ;
-
-                    if (item.est_risques_naturels && item.est_risques_technologiques) {
-                        var marker = L.marker([lat, lon],{icon: riskMult_marker}).bindPopup(popupContent);
-                    } else if (item.est_risques_naturels) {
-                        var marker = L.marker([lat, lon],{icon: riskNat_marker}).bindPopup(popupContent);
-                    } else {
-                        var marker = L.marker([lat, lon],{icon: riskTEch_marker}).bindPopup(popupContent);
-                    }
-
-                    markers.addLayer(marker);
-
-                } else {
-                    // console.log(`Action ${item.nom} : lat or lon is nan`);
-                }
-            });
-
-            map.addLayer(markers); // Ajout des marqueurs à la carte
+            // plot des marqueurs
+            var nb_actions = plot_actions_markers(csvData.data);
 
             // Ajout de la légende
             var legend = L.control({position: 'bottomleft'});
@@ -346,14 +385,38 @@ $(document).ready(function () {
     // form de filtrage des actions
     async function onSubmitFilterForm(event) {
 
+        var col_to_filter_on = []
+
         event.preventDefault();
 
         // Récupérer les valeurs sélectionnées des checkboxes
         const checkboxValues = {};
         const checkboxList = $('#filterForm input[type="checkbox"]');
         checkboxList.each(function() {
-            checkboxValues[this.id] = this.checked;
+            if (this.checked) {
+                col_to_filter_on.push(`est_${this.id}`)
+            }
         });
+
+        if (col_to_filter_on.length == 0) {
+            $("#filter_action_counter").html(`Veuillez sélectionner certains champs ci-dessus.`)
+            return;
+        }
+
+        // On filtre les données
+        data = filter_columns_OR(csvData.data, col_to_filter_on);
+
+        // On replot les marqueurs
+        plot_actions_markers(data)
+
+        // On affiche le nombre d'actions trouvées
+        let nb_actions = data.length;
+        if (nb_actions == 0) {
+            $("#filter_action_counter").html(`Pas d'actions correspondant à votre recherche.`)
+        } else {
+            $("#filter_action_counter").html(`${nb_actions} actions trouvées.`)
+        }
+        
 
     }
 
@@ -361,7 +424,6 @@ $(document).ready(function () {
     document.getElementById('filterForm').addEventListener('submit', onSubmitFilterForm);
 
 
-    
     // bouttons tout selectionner / deselectionner
     $("#deselect_risques").click(function() {
 
