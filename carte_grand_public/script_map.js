@@ -51,6 +51,39 @@ function filter_columns_OR(data, col_names) {
 
 };
 
+// Function to compute great circle distance between two points
+// All lat/lon in dregrees
+function gc_distance(lat1, lon1, lat2, lon2) {
+
+    const R = 6371e3; // metres
+    const phi1 = lat1 * Math.PI/180; 
+    const phi2 = lat2 * Math.PI/180;
+    const dphi = (lat2-lat1) * Math.PI/180;
+    const dlambda = (lon2-lon1) * Math.PI/180;
+
+    const a = Math.sin(dphi/2) * Math.sin(dphi/2) +
+            Math.cos(phi1) * Math.cos(phi2) *
+            Math.sin(dlambda/2) * Math.sin(dlambda/2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+    const d = R * c; // in metres
+
+    return d;
+}
+
+// Function to filter actions based on maximum distance to a point 
+// lat lon in degrees, max_dist in metres
+function filter_distance(data, lat, lon, max_dist) {
+
+    console.log(lat,lon,max_dist)
+
+    data = data.filter(function(i) {
+        d = gc_distance(lat,lon,i.lat,i.lon)
+        return d < max_dist;
+    });
+
+    return data;
+}
 
 // function for plotting markers
 function plot_actions_markers(data) {
@@ -360,7 +393,20 @@ $(document).ready(function () {
             return ;
         }
 
-        // Mise à jour de la carte
+        // Filtre des actions à afficher
+        data = filter_distance(csvData.data, latitude, longitude, distance);
+
+        // On replot les marqueurs
+        $("#location_action_counter").html();
+        if (data.length > 0) {
+            plot_actions_markers(data);
+            $("#location_action_counter").html(`${data.length} actions trouvées.`);
+        } else {
+            $("#location_action_counter").html("Aucune action trouvée dans cette zone...");
+        }
+        
+        
+        // Mise à joue de l'extent de la carte
         centerMap(map, latitude, longitude, distance);
 
         // Affichage de l'adresse entrée par l'utilisateur
@@ -372,7 +418,6 @@ $(document).ready(function () {
         // var marker = L.marker([latitude, longitude],{icon: myPosition_marker});
         // map.addLayer(marker);
         
-
         // Mise à jour des statistiques départementales
         update_plot_nb_actions(dpt_code);
         update_dpt_button(dpt_code);
