@@ -5,6 +5,8 @@ var csvData;
 var map;
 var markers = L.markerClusterGroup();
 
+var OSM_dpt_data;
+
 var select_all_risque = true;
 var select_all_public = true;
 
@@ -85,6 +87,16 @@ function filter_distance(data, lat, lon, max_dist) {
     return data;
 }
 
+// Function to filter based on insee_dep
+function filtrer_dpt(data, dpt_code) {
+
+    data = data.filter(function(i) {
+        return i.insee_dep == dpt_code;
+    });
+
+    return data;
+}
+
 // function for plotting markers
 function plot_actions_markers(data) {
 
@@ -154,8 +166,6 @@ $(document).ready(function () {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-
-
     // Chargement du fichier CSV
     $.ajax({
         url: 'data/actions_grand_public_carte.csv',
@@ -192,9 +202,13 @@ $(document).ready(function () {
                 var div = L.DomUtil.create('div', 'info legend');
                 labels = ['<strong>Risques abordés</strong>'],
 
-                labels.push('<i class="bi bi-circle-fill" style="color:#38a9dd"></i> Multirisques');
-                labels.push('<i class="bi bi-circle-fill" style="color:#72b026"></i> Risques naturels');
-                labels.push('<i class="bi bi-circle-fill" style="color:#d33d2a"></i> Risques technologiques');
+                labels.push('<span style="color:#38a9dd">◼</span> Multirisques');
+                labels.push('<span style="color:#72b026">◼</span> Risques naturels');
+                labels.push('<span style="color:#d33d2a">◼</span> Risques technologiques');
+
+                // labels.push('<i class="bi bi-circle-fill" style="color:#38a9dd"></i> Multirisques');
+                // labels.push('<i class="bi bi-circle-fill" style="color:#72b026"></i> Risques naturels');
+                // labels.push('<i class="bi bi-circle-fill" style="color:#d33d2a"></i> Risques technologiques');
 
                 div.innerHTML = labels.join('<br>');    
 
@@ -226,6 +240,14 @@ $(document).ready(function () {
             });
         }
     });
+
+    // Chargement des info de zoom sur les départements
+    fetch('./data/dpt_zoom_info.json')
+        .then(response => response.json())
+        .then(data => {
+            OSM_dpt_data = data;
+        })
+        .catch(error => console.error('Une erreur s\'est produite :', error));
 
     // Boutons pour changer la vue de la carte
     var locations = [
@@ -399,7 +421,10 @@ $(document).ready(function () {
         // On replot les marqueurs
         $("#location_action_counter").html();
         if (data.length > 0) {
-            plot_actions_markers(data);
+
+            // Si on veut modifier les markers affichés sur la carte : décommenter la ligne ci-dessous
+            // plot_actions_markers(data);
+
             $("#location_action_counter").html(`${data.length} actions trouvées.`);
         } else {
             $("#location_action_counter").html("Aucune action trouvée dans cette zone...");
@@ -425,6 +450,37 @@ $(document).ready(function () {
     
     // Attacher la fonction onSubmitForm à l'événement submit du formulaire
     document.getElementById('locationForm').addEventListener('submit', onSubmitForm);
+
+    // Menu déroulant choix de département
+    $("#dpt-dropdown .dropdown-item").on("click", function(e) {
+
+        e.preventDefault();
+
+        // On récupère le dpt sélectionné
+        var dpt_code = $(this).attr("value");
+        
+
+        // On filtre les actions
+        data = filtrer_dpt(csvData.data, dpt_code);
+
+        // MAJ message
+        $("#dpt_action_counter").html()
+        if (data.length > 0) {
+            $("#dpt_action_counter").html(`${data.length} actions trouvées.`);
+        } else {
+            $("#dpt_action_counter").html(`Aucune action trouvée dans le ${dpt_code}...`);
+        }
+
+        zoom_info = OSM_dpt_data[dpt_code];
+
+        map.setView([zoom_info["lat"], zoom_info["lon"]], zoom_info["zoom_level"]);
+
+        // Mettre à jour le volet stats départementales
+        update_plot_nb_actions(dpt_code);
+        update_dpt_button(dpt_code);
+        
+
+    });
 
 
     // form de filtrage des actions
