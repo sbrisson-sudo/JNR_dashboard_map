@@ -53,6 +53,37 @@ function filter_columns_OR(data, col_names) {
 
 };
 
+// Fonctio pour filtrer sur les risques et ensuite sur les publics
+function filter_risque_public(data, risques, publics) {
+
+    var values;
+
+    data = data.filter(function(i) {
+
+        if (risques.length == 0) {
+            values_publics = [];
+            publics.forEach(col => values_publics.push(i[col]));
+            return values_publics.includes(true);
+        } else if (publics.length == 0) {
+            values_risques = [];
+            risques.forEach(col => values_risques.push(i[col]));
+            return values_risques.includes(true);
+        } else {
+            values_risques = [];
+            risques.forEach(col => values_risques.push(i[col]))
+
+            values_publics = [];
+            publics.forEach(col => values_publics.push(i[col]))
+
+            return values_risques.includes(true) && values_publics.includes(true)
+        }
+
+    });
+
+    return data;
+
+};
+
 // Function to compute great circle distance between two points
 // All lat/lon in dregrees
 function gc_distance(lat1, lon1, lat2, lon2) {
@@ -486,12 +517,10 @@ $(document).ready(function () {
     // form de filtrage des actions
     async function onSubmitFilterForm(event) {
 
-        var col_to_filter_on = []
-
         event.preventDefault();
 
         // Récupérer les valeurs sélectionnées des checkboxes
-        const checkboxValues = {};
+        var col_to_filter_on = []
         const checkboxList = $('#filterForm input[type="checkbox"]');
         checkboxList.each(function() {
             if (this.checked) {
@@ -504,8 +533,26 @@ $(document).ready(function () {
             return;
         }
 
+        // Même chose mais différencier type de risque et type de public
+        var risques_to_filter_on = []
+        const checkboxList_risques = $('#select_risques_form input[type="checkbox"]');
+        checkboxList_risques.each(function() {
+            if (this.checked) {
+                risques_to_filter_on.push(`est_${this.id}`)
+            }
+        });
+
+        var publics_to_filter_on = []
+        const checkboxList_publics = $('#select_publics_form input[type="checkbox"]');
+        checkboxList_publics.each(function() {
+            if (this.checked) {
+                publics_to_filter_on.push(`est_${this.id}`)
+            }
+        });
+
         // On filtre les données
-        data = filter_columns_OR(csvData.data, col_to_filter_on);
+        // data = filter_columns_OR(csvData.data, col_to_filter_on);
+        data = filter_risque_public(csvData.data, risques_to_filter_on, publics_to_filter_on);
 
         // On replot les marqueurs
         plot_actions_markers(data)
