@@ -1,0 +1,6 @@
+Elu
+Salarié
+Etudiant
+Scolaire
+Personne vulnérable
+Autres

@@ -1,0 +1,745 @@
+{
+    "__typename": "Dossier",
+    "id": "RG9zc2llci0xMjg1MTE5Nw==",
+    "number": 12851197,
+    "archived": false,
+    "state": "en_instruction",
+    "dateDerniereModification": "2023-08-21T16:43:24+02:00",
+    "dateDepot": "2023-06-07T14:58:39+02:00",
+    "datePassageEnConstruction": "2023-06-07T14:58:39+02:00",
+    "datePassageEnInstruction": "2023-07-25T11:20:05+02:00",
+    "dateTraitement": null,
+    "dateExpiration": null,
+    "dateSuppressionParUsager": null,
+    "motivation": null,
+    "motivationAttachment": null,
+    "attestation": null,
+    "pdf": {
+        "__typename": "File",
+        "filename": "dossier-12851197.pdf",
+        "contentType": "application/pdf",
+        "checksum": "",
+        "byteSize": "0",
+        "url": "https://www.demarches-simplifiees.fr/api/v2/dossiers/pdf/BAh7CEkiCGdpZAY6BkVUSSIvZ2lkOi8vdHBzL0Rvc3NpZXIvMTI4NTExOTc_ZXhwaXJlc19pbj0zNjAwBjsAVEkiDHB1cnBvc2UGOwBUSSILYXBpX3YyBjsAVEkiD2V4cGlyZXNfYXQGOwBUSSIdMjAyMy0wOC0yM1QxMDoyOToyOS40OTdaBjsAVA==--1dc63ffc78a00a88351be8279ff7b9250ec1b2c3",
+        "createdAt": "2023-08-23T11:29:29+02:00"
+    },
+    "usager": {
+        "email": "evelyne.allain@iffo-rme.fr"
+    },
+    "connectionUsager": "password",
+    "groupeInstructeur": {
+        "id": "R3JvdXBlSW5zdHJ1Y3RldXItMTM0Njcz",
+        "number": 134673,
+        "label": "18-CHER",
+        "instructeurs": [
+            {
+                "id": "SW5zdHJ1Y3RldXItNzI5MTM=",
+                "email": "marjolaine.mansion@cher.gouv.fr"
+            },
+            {
+                "id": "SW5zdHJ1Y3RldXItNzI5MTQ=",
+                "email": "caroline.schmit@cher.gouv.fr"
+            },
+            {
+                "id": "SW5zdHJ1Y3RldXItNzI2ODA=",
+                "email": "dgpr-jnresilience@developpement-durable.gouv.fr"
+            },
+            {
+                "id": "SW5zdHJ1Y3RldXItNzI2NzU=",
+                "email": "dgscgc-jnr-demarchesimplifiees@interieur.gouv.fr"
+            },
+            {
+                "id": "SW5zdHJ1Y3RldXItNzI5MTg=",
+                "email": "pref-defense-protection-civile@cher.gouv.fr"
+            }
+        ]
+    },
+    "demandeur": {
+        "__typename": "PersonnePhysique",
+        "civilite": "Mme",
+        "nom": "Allain",
+        "prenom": "Evelyne"
+    },
+    "demarche": {
+        "revision": {
+            "id": "UHJvY2VkdXJlUmV2aXNpb24tMTA3MjQ4"
+        }
+    },
+    "instructeurs": [
+        {
+            "id": "SW5zdHJ1Y3RldXItNzI2ODA=",
+            "email": "dgpr-jnresilience@developpement-durable.gouv.fr"
+        },
+        {
+            "id": "SW5zdHJ1Y3RldXItNzI5MTM=",
+            "email": "marjolaine.mansion@cher.gouv.fr"
+        }
+    ],
+    "traitements": [
+        {
+            "state": "en_construction",
+            "emailAgentTraitant": null,
+            "dateTraitement": "2023-06-07T14:58:39+02:00",
+            "motivation": null
+        },
+        {
+            "state": "en_instruction",
+            "emailAgentTraitant": "marjolaine.mansion@cher.gouv.fr",
+            "dateTraitement": "2023-07-25T11:20:05+02:00",
+            "motivation": null
+        }
+    ],
+    "champs": [
+        {
+            "id": "Q2hhbXAtMzM0ODYzNg==",
+            "__typename": "TextChamp",
+            "label": "S\u00e9lectionnez la zone g\u00e9ographique du projet",
+            "stringValue": "18-CHER",
+            "updatedAt": "2023-06-07T12:08:46+02:00"
+        },
+        {
+            "id": "Q2hhbXAtMjYxNDkwMg==",
+            "__typename": "TextChamp",
+            "label": "Zone g\u00e9ographique du projet (Un projet peut regrouper plusieurs actions)",
+            "stringValue": "",
+            "updatedAt": "2023-06-07T12:07:43+02:00"
+        },
+        {
+            "id": "Q2hhbXAtMzMwNDc1Nw==",
+            "__typename": "TextChamp",
+            "label": "Identit\u00e9 du porteur de projet",
+            "stringValue": "",
+            "updatedAt": "2023-06-07T12:07:43+02:00"
+        },
+        {
+            "id": "Q2hhbXAtMjIxMDM1OQ==",
+            "__typename": "TextChamp",
+            "label": "Statut juridique du porteur de projet",
+            "stringValue": "Association",
+            "updatedAt": "2023-06-07T12:08:59+02:00"
+        },
+        {
+            "id": "Q2hhbXAtMjIxMDg0MA==",
+            "__typename": "TextChamp",
+            "label": "Si le demandeur n'est pas un particulier, veuillez inscrire la raison sociale de l'\u00e9tablissement et son num\u00e9ro de SIRET/SIREN",
+            "stringValue": "",
+            "updatedAt": "2023-06-07T12:07:43+02:00"
+        },
+        {
+            "id": "Q2hhbXAtMjYzODE2MA==",
+            "__typename": "TextChamp",
+            "label": "Raison sociale",
+            "stringValue": "IFFO-RME",
+            "updatedAt": "2023-06-07T12:09:32+02:00"
+        },
+        {
+            "id": "Q2hhbXAtMjYzODE2MQ==",
+            "__typename": "SiretChamp",
+            "label": "SIRET/SIREN",
+            "stringValue": "43239688500035",
+            "updatedAt": "2023-06-07T12:15:29+02:00",
+            "etablissement": {
+                "siret": "43239688500035",
+                "siegeSocial": true,
+                "naf": "94.99Z",
+                "libelleNaf": "Autres organisations fonctionnant par adh\u00e9sion volontaire",
+                "address": {
+                    "label": "INST FRANC FORMATEURS RISQUES MAJ PROTIO\r\n\r\n\r\n9 RUE JACQUES LOUVEL TESSIER\r\n\r\n75010 PARIS 10\r\nFRANCE",
+                    "type": "housenumber",
+                    "streetAddress": "9 RUE JACQUES LOUVEL TESSIER",
+                    "streetNumber": "9",
+                    "streetName": "JACQUES LOUVEL TESSIER",
+                    "postalCode": "75010",
+                    "cityName": "PARIS 10",
+                    "cityCode": "75110",
+                    "departmentName": null,
+                    "departmentCode": null,
+                    "regionName": null,
+                    "regionCode": null
+                },
+                "entreprise": {
+                    "siren": "432396885",
+                    "capitalSocial": "-1",
+                    "numeroTvaIntracommunautaire": null,
+                    "formeJuridique": "Association d\u00e9clar\u00e9e",
+                    "formeJuridiqueCode": "9220",
+                    "nomCommercial": "",
+                    "raisonSociale": "INST FRANC FORMATEURS RISQUES MAJ PROTIO",
+                    "siretSiegeSocial": "43239688500035",
+                    "codeEffectifEntreprise": "02",
+                    "dateCreation": "1997-09-22",
+                    "nom": null,
+                    "prenom": null,
+                    "attestationFiscaleAttachment": null,
+                    "attestationSocialeAttachment": null
+                },
+                "association": null
+            }
+        },
+        {
+            "id": "Q2hhbXAtMjIwOTUzMA==",
+            "__typename": "AddressChamp",
+            "label": "Adresse",
+            "stringValue": "9 Rue Jacques Louvel-Tessier 75010 Paris",
+            "updatedAt": "2023-06-07T12:16:08+02:00",
+            "address": {
+                "label": "9 Rue Jacques Louvel-Tessier 75010 Paris",
+                "type": "housenumber",
+                "streetAddress": "9 Rue Jacques Louvel-Tessier",
+                "streetNumber": "9",
+                "streetName": "Rue Jacques Louvel-Tessier",
+                "postalCode": "75010",
+                "cityName": "Paris",
+                "cityCode": "75110",
+                "departmentName": "Paris",
+                "departmentCode": "75",
+                "regionName": "\u00cele-de-France",
+                "regionCode": "11"
+            },
+            "commune": {
+                "name": "Paris 10e Arrondissement",
+                "code": "75110",
+                "postalCode": "75010"
+            },
+            "departement": {
+                "name": "Paris",
+                "code": "75"
+            }
+        },
+        {
+            "id": "Q2hhbXAtMjU3Njk0Nw==",
+            "__typename": "TextChamp",
+            "label": "NOM et Pr\u00e9nom",
+            "stringValue": "Evelyne Allain",
+            "updatedAt": "2023-06-07T12:16:16+02:00"
+        },
+        {
+            "id": "Q2hhbXAtMjIwOTUzMw==",
+            "__typename": "TextChamp",
+            "label": "T\u00e9l\u00e9phone",
+            "stringValue": "01 44 72 06 25",
+            "updatedAt": "2023-06-07T12:16:44+02:00"
+        },
+        {
+            "id": "Q2hhbXAtMjIxMDE2Nw==",
+            "__typename": "TextChamp",
+            "label": "Email de la personne contact",
+            "stringValue": "evelyne.allain@iffo-rme.fr",
+            "updatedAt": "2023-06-07T12:16:16+02:00"
+        },
+        {
+            "id": "Q2hhbXAtMzI4NjU4MA==",
+            "__typename": "RepetitionChamp",
+            "label": "Co-porteur de projet",
+            "stringValue": "",
+            "updatedAt": "2023-06-07T12:07:43+02:00",
+            "rows": [
+                {
+                    "champs": [
+                        {
+                            "id": "Q2hhbXAtMzM0MzY4MnwwMUgyQU5RU1pDQ0NZWU40UFBFQkhZVzRRSA==",
+                            "__typename": "TextChamp",
+                            "label": "Un co-porteur est un deuxi\u00e8me porteur de projet, qui engage sa responsabilit\u00e9 lors de l'\u00e9v\u00e9nement.",
+                            "stringValue": "",
+                            "updatedAt": "2023-06-07T12:16:48+02:00"
+                        },
+                        {
+                            "id": "Q2hhbXAtMzI4NjYyN3wwMUgyQU5RU1pDQ0NZWU40UFBFQkhZVzRRSA==",
+                            "__typename": "TextChamp",
+                            "label": "Statut juridique du co-porteur",
+                            "stringValue": "Service de l\u2019\u00c9tat",
+                            "updatedAt": "2023-06-07T12:17:05+02:00"
+                        },
+                        {
+                            "id": "Q2hhbXAtMzI4NjYwM3wwMUgyQU5RU1pDQ0NZWU40UFBFQkhZVzRRSA==",
+                            "__typename": "TextChamp",
+                            "label": "Raison sociale du co-porteur",
+                            "stringValue": "Pr\u00e9fecture du Cher",
+                            "updatedAt": "2023-06-07T12:17:29+02:00"
+                        },
+                        {
+                            "id": "Q2hhbXAtMzI4Njc5MHwwMUgyQU5RU1pDQ0NZWU40UFBFQkhZVzRRSA==",
+                            "__typename": "TextChamp",
+                            "label": "NOM et pr\u00e9nom du co-porteur",
+                            "stringValue": "MANSION Marjolaine",
+                            "updatedAt": "2023-06-07T12:17:46+02:00"
+                        },
+                        {
+                            "id": "Q2hhbXAtMzI4Njc4MnwwMUgyQU5RU1pDQ0NZWU40UFBFQkhZVzRRSA==",
+                            "__typename": "TextChamp",
+                            "label": "Email de la personne contact du co-porteur",
+                            "stringValue": "marjolaine.mansion@cher.gouv.fr",
+                            "updatedAt": "2023-06-07T12:18:12+02:00"
+                        }
+                    ]
+                },
+                {
+                    "champs": [
+                        {
+                            "id": "Q2hhbXAtMzM0MzY4MnwwMUgyQU5USzFLWjE0M05NODlQSktZTkYwMw==",
+                            "__typename": "TextChamp",
+                            "label": "Un co-porteur est un deuxi\u00e8me porteur de projet, qui engage sa responsabilit\u00e9 lors de l'\u00e9v\u00e9nement.",
+                            "stringValue": "",
+                            "updatedAt": "2023-06-07T12:18:19+02:00"
+                        },
+                        {
+                            "id": "Q2hhbXAtMzI4NjYyN3wwMUgyQU5USzFLWjE0M05NODlQSktZTkYwMw==",
+                            "__typename": "TextChamp",
+                            "label": "Statut juridique du co-porteur",
+                            "stringValue": "\u00c9ducation nationale",
+                            "updatedAt": "2023-06-07T12:18:30+02:00"
+                        },
+                        {
+                            "id": "Q2hhbXAtMzI4NjYwM3wwMUgyQU5USzFLWjE0M05NODlQSktZTkYwMw==",
+                            "__typename": "TextChamp",
+                            "label": "Raison sociale du co-porteur",
+                            "stringValue": "DSDEN 18",
+                            "updatedAt": "2023-06-07T12:18:45+02:00"
+                        },
+                        {
+                            "id": "Q2hhbXAtMzI4Njc5MHwwMUgyQU5USzFLWjE0M05NODlQSktZTkYwMw==",
+                            "__typename": "TextChamp",
+                            "label": "NOM et pr\u00e9nom du co-porteur",
+                            "stringValue": "RIPARD Dominique",
+                            "updatedAt": "2023-06-07T12:18:58+02:00"
+                        },
+                        {
+                            "id": "Q2hhbXAtMzI4Njc4MnwwMUgyQU5USzFLWjE0M05NODlQSktZTkYwMw==",
+                            "__typename": "TextChamp",
+                            "label": "Email de la personne contact du co-porteur",
+                            "stringValue": "dominique.ripard@ac-orleans-tours.gouv.fr",
+                            "updatedAt": "2023-06-07T12:19:41+02:00"
+                        },
+                        {
+                            "id": "Q2hhbXAtMzI4Njc5NHwwMUgyQU5USzFLWjE0M05NODlQSktZTkYwMw==",
+                            "__typename": "TextChamp",
+                            "label": "Acad\u00e9mie du co-porteur",
+                            "stringValue": "Orl\u00e9ans-Tours",
+                            "updatedAt": "2023-06-07T12:19:51+02:00"
+                        },
+                        {
+                            "id": "Q2hhbXAtMzI4Njc5OXwwMUgyQU5USzFLWjE0M05NODlQSktZTkYwMw==",
+                            "__typename": "TextChamp",
+                            "label": "Type d'\u00e9tablissement du co-porteur",
+                            "stringValue": "Coll\u00e8ge",
+                            "updatedAt": "2023-06-07T14:57:46+02:00"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "Q2hhbXAtMjYzNzEwNg==",
+            "__typename": "TextChamp",
+            "label": "R\u00e9f\u00e9rences du porteur de projet",
+            "stringValue": "",
+            "updatedAt": "2023-06-07T12:07:43+02:00"
+        },
+        {
+            "id": "Q2hhbXAtMjYzNzEwNw==",
+            "__typename": "TextChamp",
+            "label": "Quels sont les \u00e9ventuels partenariats que vous mobilisez ?",
+            "stringValue": "Commune de Neuvy sur Barangeon, Chambre d'agriculture, CNPF, ONF, Protection civile, Ordre de Malte, gendarmerie, SDIS, DDT18, prevention MAIF, ...",
+            "updatedAt": "2023-06-07T12:27:13+02:00"
+        },
+        {
+            "id": "Q2hhbXAtMjYzNzExMA==",
+            "__typename": "TextChamp",
+            "label": "Quelles sont vos r\u00e9f\u00e9rences (expertises, publications, actions d\u00e9ja men\u00e9es) dans des objectifs relevant de cette journ\u00e9e nationale de la r\u00e9silience ?",
+            "stringValue": "Les co-porteurs ont mis en place en 2022 le village PLOUF18, individuellement tous les personnes contacte sont formateurs Risques Majeurs (IFFO-RME)",
+            "updatedAt": "2023-06-07T12:22:24+02:00"
+        },
+        {
+            "id": "Q2hhbXAtMzMwNDc3NA==",
+            "__typename": "CheckboxChamp",
+            "label": "Avez-vous particip\u00e9 \u00e0 la JNR 2022?",
+            "stringValue": "true",
+            "updatedAt": "2023-06-07T12:22:27+02:00",
+            "checked": true
+        },
+        {
+            "id": "Q2hhbXAtMjIxMDM4NA==",
+            "__typename": "TextChamp",
+            "label": "Caract\u00e9ristiques du projet",
+            "stringValue": "",
+            "updatedAt": "2023-06-07T12:07:43+02:00"
+        },
+        {
+            "id": "Q2hhbXAtMzI4NTYzNA==",
+            "__typename": "TextChamp",
+            "label": "Un projet peut regrouper plusieurs actions de nature identique ou diff\u00e9rente r\u00e9alis\u00e9es sur un ou plusieurs sites",
+            "stringValue": "",
+            "updatedAt": "2023-06-07T12:07:43+02:00"
+        },
+        {
+            "id": "Q2hhbXAtMzA1MTI5OQ==",
+            "__typename": "TextChamp",
+            "label": "Intitul\u00e9 du projet",
+            "stringValue": "GAFFOFEU, Tous concern\u00e9s, tous acteurs",
+            "updatedAt": "2023-06-07T12:27:50+02:00"
+        },
+        {
+            "id": "Q2hhbXAtMjk4MDcyMA==",
+            "__typename": "TextChamp",
+            "label": "Description g\u00e9n\u00e9rale et synth\u00e9tique du projet",
+            "stringValue": "Il s'agit d'un village de la pr\u00e9vention et de la r\u00e9silience sur les risques de feux de for\u00eats et de v\u00e9g\u00e9tation dans un contexte o\u00f9 les s\u00e9cheresses pr\u00e9coces augmentent les risques. Ce village-forum se tiendra au Domaine de la Grande Garenne \u00e0 Neuvy sur Barangeon. Il est ouvert aux scolaires, aux jeunes du SNU et au grand public. Il compte 12 ateliers ludo-p\u00e9dagogiques, un temps de r\u00e9flexion collectif d\u00e9di\u00e9 aux professionnels et aux propri\u00e9taires forestiers, une pi\u00e8ce de th\u00e9\u00e2tre participatif.  Il est le premier \u00e9v\u00e8nement \u00e0 aborder ces risques! Sur 3 jours, plus de 600 visiteurs sont attendus.",
+            "updatedAt": "2023-06-07T12:46:23+02:00"
+        },
+        {
+            "id": "Q2hhbXAtMjYzNzEzOA==",
+            "__typename": "IntegerNumberChamp",
+            "label": "Nombre total d'actions (identiques et/ou diff\u00e9rentes) organis\u00e9es",
+            "stringValue": "1",
+            "updatedAt": "2023-06-07T12:44:37+02:00",
+            "integerNumber": "1"
+        },
+        {
+            "id": "Q2hhbXAtMjYzNzk5Mw==",
+            "__typename": "TextChamp",
+            "label": "Si vous avez plusieurs actions, veuillez les ajouter en cliquant en bas \u00e0 gauche du champ \"Intitul\u00e9 de l'action\", sur  \"+ ajouter un \u00e9l\u00e9ment pour Intitul\u00e9 de l'action\"",
+            "stringValue": "",
+            "updatedAt": "2023-06-07T12:07:43+02:00"
+        },
+        {
+            "id": "Q2hhbXAtMzM0MjQ2Mg==",
+            "__typename": "CheckboxChamp",
+            "label": "1. Une action se d\u00e9roule dans une seule localisation ou est d\u00e9mat\u00e9rialis\u00e9e",
+            "stringValue": "true",
+            "updatedAt": "2023-06-07T12:44:53+02:00",
+            "checked": true
+        },
+        {
+            "id": "Q2hhbXAtMzM0NDUwMg==",
+            "__typename": "RepetitionChamp",
+            "label": "Action",
+            "stringValue": "",
+            "updatedAt": "2023-06-07T12:07:43+02:00",
+            "rows": []
+        },
+        {
+            "id": "Q2hhbXAtMzM0NDM2NQ==",
+            "__typename": "CheckboxChamp",
+            "label": "2 - Une ou plusieurs de vos actions se d\u00e9roulent plusieurs localisations",
+            "stringValue": "false",
+            "updatedAt": "2023-06-07T12:07:43+02:00",
+            "checked": false
+        },
+        {
+            "id": "Q2hhbXAtMjU3NzExMw==",
+            "__typename": "TextChamp",
+            "label": "Charte des valeurs",
+            "stringValue": "",
+            "updatedAt": "2023-06-07T12:07:43+02:00"
+        },
+        {
+            "id": "Q2hhbXAtMjU5MTM3NQ==",
+            "__typename": "TextChamp",
+            "label": "Sans pr\u00e9judice des lois et r\u00e8glements, tout projet propos\u00e9 \u00e0 la labellisation de l\u2019Etat respecte les valeurs et principes suivants, qui constituent la \u00ab Charte des valeurs de la Journ\u00e9e \u00bb :",
+            "stringValue": "",
+            "updatedAt": "2023-06-07T12:07:43+02:00"
+        },
+        {
+            "id": "Q2hhbXAtMjU5MTc1Ng==",
+            "__typename": "CheckboxChamp",
+            "label": "En tant que porteur de projet propos\u00e9 \u00e0 la labellisation de l\u2019Etat, je m\u2019engage \u00e0 respecter les valeurs et principes suivants, qui constituent la \u00ab Charte des valeurs de la Journ\u00e9e \u00bb",
+            "stringValue": "true",
+            "updatedAt": "2023-06-07T12:47:21+02:00",
+            "checked": true
+        },
+        {
+            "id": "Q2hhbXAtMjIxMTAxMg==",
+            "__typename": "CheckboxChamp",
+            "label": "Je m\u2019engage, si mon projet est labellis\u00e9",
+            "stringValue": "true",
+            "updatedAt": "2023-06-07T12:47:25+02:00",
+            "checked": true
+        },
+        {
+            "id": "Q2hhbXAtMjIxMDg4OA==",
+            "__typename": "TextChamp",
+            "label": "D\u00e9claration sur l'honneur",
+            "stringValue": "",
+            "updatedAt": "2023-06-07T12:07:43+02:00"
+        },
+        {
+            "id": "Q2hhbXAtMjIxMDg4OQ==",
+            "__typename": "CheckboxChamp",
+            "label": "J'atteste sur l\u2019honneur l\u2019exactitude des renseignements fournis ;",
+            "stringValue": "true",
+            "updatedAt": "2023-06-07T12:47:32+02:00",
+            "checked": true
+        },
+        {
+            "id": "Q2hhbXAtMjIxMTAxMA==",
+            "__typename": "CheckboxChamp",
+            "label": "J'atteste avoir pris connaissance du r\u00e8glement de l\u2019appel \u00e0 projets Journ\u00e9e nationale r\u00e9silience 2023",
+            "stringValue": "true",
+            "updatedAt": "2023-06-07T12:47:33+02:00",
+            "checked": true
+        },
+        {
+            "id": "Q2hhbXAtMjU4OTc2NA==",
+            "__typename": "TextChamp",
+            "label": "R\u00e9ponse aux candidats et information des projets",
+            "stringValue": "",
+            "updatedAt": "2023-06-07T12:07:43+02:00"
+        },
+        {
+            "id": "Q2hhbXAtMjU4OTc3NQ==",
+            "__typename": "TextChamp",
+            "label": "L'Etat s'engage",
+            "stringValue": "",
+            "updatedAt": "2023-06-07T12:07:43+02:00"
+        },
+        {
+            "id": "Q2hhbXAtMjIxMDg5MQ==",
+            "__typename": "TextChamp",
+            "label": "Pi\u00e8ces justificatives (obligatoire pour l'instruction du projet)",
+            "stringValue": "",
+            "updatedAt": "2023-06-07T12:07:43+02:00"
+        },
+        {
+            "id": "Q2hhbXAtMjYzODQ2OA==",
+            "__typename": "PieceJustificativeChamp",
+            "label": "Pour les personnes morales : attestation de situation (Num\u00e9ro SIRET/ SIREN de moins de 3 mois)",
+            "stringValue": "",
+            "updatedAt": "2023-06-07T12:52:44+02:00",
+            "files": [
+                {
+                    "__typename": "File",
+                    "filename": "Avis_de_situation_43239688500035_07_06_2023 12_50_42.pdf",
+                    "contentType": "application/pdf",
+                    "checksum": "+y43j51x9GAAn+lCJ68nqA==",
+                    "byteSize": "161099",
+                    "url": "https://static.demarches-simplifiees.fr:443/v1/AUTH_db3cbfc79c914f87b192ff7c6bb176f0/ds_activestorage_backup/2023/06/07/xx/xxmx0mvgftbaiyv2gkdp5osinrpj?temp_url_sig=a621c5a7d5b0624c15a04bededc9fa9a0845b5ff&temp_url_expires=1692786572&filename=Avis_de_situation_43239688500035_07_06_2023%2012_50_42.pdf&inline",
+                    "createdAt": "2023-06-07T12:52:44+02:00"
+                }
+            ]
+        },
+        {
+            "id": "Q2hhbXAtMjYzODQ2OQ==",
+            "__typename": "TitreIdentiteChamp",
+            "label": "Pour les particuliers : pi\u00e8ce d'identit\u00e9",
+            "stringValue": "",
+            "updatedAt": "2023-06-07T12:07:43+02:00"
+        },
+        {
+            "id": "Q2hhbXAtMzMwNDExMQ==",
+            "__typename": "TextChamp",
+            "label": "Pi\u00e8ces compl\u00e9mentaires",
+            "stringValue": "",
+            "updatedAt": "2023-06-07T12:07:43+02:00"
+        },
+        {
+            "id": "Q2hhbXAtMzIzOTI3OQ==",
+            "__typename": "PieceJustificativeChamp",
+            "label": "Document compl\u00e9mentaire (plaquette, descriptif,...)",
+            "stringValue": "",
+            "updatedAt": "2023-06-07T12:48:48+02:00",
+            "files": [
+                {
+                    "__typename": "File",
+                    "filename": "fly Gaffofeu web.pdf",
+                    "contentType": "application/pdf",
+                    "checksum": "eyYypWCS6nj0GfP73lQXrQ==",
+                    "byteSize": "1924084",
+                    "url": "https://static.demarches-simplifiees.fr:443/v1/AUTH_db3cbfc79c914f87b192ff7c6bb176f0/ds_activestorage_backup/2023/06/07/6j/6j8g33jlfwi9yiyfcre7jx0c3rhm?temp_url_sig=3952e929d4322fc3f6bb0efe250d4b2b13cf7e93&temp_url_expires=1692786572&filename=fly%20Gaffofeu%20web.pdf&inline",
+                    "createdAt": "2023-06-07T12:48:48+02:00"
+                }
+            ]
+        },
+        {
+            "id": "Q2hhbXAtMzI4NjQ0Mw==",
+            "__typename": "TextChamp",
+            "label": "Aide financi\u00e8re de l'Etat",
+            "stringValue": "",
+            "updatedAt": "2023-06-07T12:07:43+02:00"
+        },
+        {
+            "id": "Q2hhbXAtMzI4NjQ0Ng==",
+            "__typename": "TextChamp",
+            "label": "Dans le cas o\u00f9 votre projet est labellis\u00e9, vous avez la possibilit\u00e9 de b\u00e9n\u00e9ficier d'une aide financi\u00e8re pour la r\u00e9alisation de vos actions. Les modalit\u00e9s de demande seront transmises dans le mail de confirmation de labellisation.",
+            "stringValue": "",
+            "updatedAt": "2023-06-07T12:07:43+02:00"
+        }
+    ],
+    "annotations": [
+        {
+            "id": "Q2hhbXAtMjIyMDA0NQ==",
+            "__typename": "RepetitionChamp",
+            "label": "Crit\u00e8res d'\u00e9ligibilit\u00e9",
+            "stringValue": "",
+            "updatedAt": "2023-06-07T12:07:43+02:00",
+            "rows": [
+                {
+                    "champs": [
+                        {
+                            "id": "Q2hhbXAtMjIyMDA0NnwwMUgyQU43NUtNS1ZEMERCUUpXNTdETUUyRQ==",
+                            "__typename": "TextChamp",
+                            "label": "Condition d\u2019\u00e9ligibilit\u00e9 n\u00b01",
+                            "stringValue": "",
+                            "updatedAt": "2023-06-07T12:07:43+02:00"
+                        },
+                        {
+                            "id": "Q2hhbXAtMjIyMDA1MnwwMUgyQU43NUtNS1ZEMERCUUpXNTdETUUyRQ==",
+                            "__typename": "MultipleDropDownListChamp",
+                            "label": "Crit\u00e8re d'\u00e9ligibilit\u00e9 n\u00b02",
+                            "stringValue": "",
+                            "updatedAt": "2023-06-07T12:07:43+02:00",
+                            "values": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "Q2hhbXAtMjYzNjE3OA==",
+            "__typename": "MultipleDropDownListChamp",
+            "label": "Crit\u00e8res d'\u00e9valuation",
+            "stringValue": "",
+            "updatedAt": "2023-06-07T12:07:43+02:00",
+            "values": []
+        },
+        {
+            "id": "Q2hhbXAtMjIxODQ4OQ==",
+            "__typename": "RepetitionChamp",
+            "label": "Analyse du crit\u00e8re n\u00b01",
+            "stringValue": "",
+            "updatedAt": "2023-06-07T12:07:43+02:00",
+            "rows": [
+                {
+                    "champs": [
+                        {
+                            "id": "Q2hhbXAtMjIxODUyMHwwMUgyQU43NUtRMlA2SDJHUTFLQzJFQVlRUQ==",
+                            "__typename": "IntegerNumberChamp",
+                            "label": "Note sur 5",
+                            "stringValue": "",
+                            "updatedAt": "2023-06-07T12:07:43+02:00",
+                            "integerNumber": null
+                        },
+                        {
+                            "id": "Q2hhbXAtMjIxODUyMnwwMUgyQU43NUtRMlA2SDJHUTFLQzJFQVlRUQ==",
+                            "__typename": "MultipleDropDownListChamp",
+                            "label": "Le crit\u00e8re pourra notamment \u00eatre appr\u00e9ci\u00e9 sur la base des \u00e9l\u00e9ments suivants :",
+                            "stringValue": "",
+                            "updatedAt": "2023-06-07T12:07:43+02:00",
+                            "values": []
+                        },
+                        {
+                            "id": "Q2hhbXAtMjU5MTMzM3wwMUgyQU43NUtRMlA2SDJHUTFLQzJFQVlRUQ==",
+                            "__typename": "TextChamp",
+                            "label": "Autres",
+                            "stringValue": "",
+                            "updatedAt": "2023-06-07T12:07:43+02:00"
+                        },
+                        {
+                            "id": "Q2hhbXAtMjU3ODMxMHwwMUgyQU43NUtRMlA2SDJHUTFLQzJFQVlRUQ==",
+                            "__typename": "MultipleDropDownListChamp",
+                            "label": "Crit\u00e8res du caract\u00e8re innovant de tout ou partie de l\u2019\u00e9v\u00e9nement propos\u00e9",
+                            "stringValue": "",
+                            "updatedAt": "2023-06-07T12:07:43+02:00",
+                            "values": []
+                        },
+                        {
+                            "id": "Q2hhbXAtMjU5MTMzNHwwMUgyQU43NUtRMlA2SDJHUTFLQzJFQVlRUQ==",
+                            "__typename": "TextChamp",
+                            "label": "Autres",
+                            "stringValue": "",
+                            "updatedAt": "2023-06-07T12:07:43+02:00"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "Q2hhbXAtMjIxODQ5Mg==",
+            "__typename": "RepetitionChamp",
+            "label": "Pertinence du projet",
+            "stringValue": "",
+            "updatedAt": "2023-06-07T12:07:43+02:00",
+            "rows": [
+                {
+                    "champs": [
+                        {
+                            "id": "Q2hhbXAtMjIxODUzNHwwMUgyQU43NUtWUDhYNE5TVzVWODBLMk5OVw==",
+                            "__typename": "TextChamp",
+                            "label": "Remarques",
+                            "stringValue": "",
+                            "updatedAt": "2023-06-07T12:07:43+02:00"
+                        },
+                        {
+                            "id": "Q2hhbXAtMjIxODUzM3wwMUgyQU43NUtWUDhYNE5TVzVWODBLMk5OVw==",
+                            "__typename": "IntegerNumberChamp",
+                            "label": "Note sur 5",
+                            "stringValue": "",
+                            "updatedAt": "2023-06-07T12:07:43+02:00",
+                            "integerNumber": null
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "Q2hhbXAtMjYzNjE3OQ==",
+            "__typename": "RepetitionChamp",
+            "label": "Analyse du crit\u00e8re n\u00b02",
+            "stringValue": "",
+            "updatedAt": "2023-06-07T12:07:43+02:00",
+            "rows": [
+                {
+                    "champs": [
+                        {
+                            "id": "Q2hhbXAtMjYzNjE4MHwwMUgyQU43NUtYM0RLQjRQRzhIVDhSTUoyNA==",
+                            "__typename": "MultipleDropDownListChamp",
+                            "label": "El\u00e9ments d'appr\u00e9ciation",
+                            "stringValue": "",
+                            "updatedAt": "2023-06-07T12:07:43+02:00",
+                            "values": []
+                        },
+                        {
+                            "id": "Q2hhbXAtMjYzNjE5OXwwMUgyQU43NUtYM0RLQjRQRzhIVDhSTUoyNA==",
+                            "__typename": "TextChamp",
+                            "label": "Remarques",
+                            "stringValue": "",
+                            "updatedAt": "2023-06-07T12:07:43+02:00"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "Q2hhbXAtMjIxODQ5Mw==",
+            "__typename": "RepetitionChamp",
+            "label": "Avis",
+            "stringValue": "",
+            "updatedAt": "2023-06-07T12:07:43+02:00",
+            "rows": [
+                {
+                    "champs": [
+                        {
+                            "id": "Q2hhbXAtMjIxODU0MnwwMUgyQU43NU0xWVY0MEdGVkdCUEFBVlZUOA==",
+                            "__typename": "TextChamp",
+                            "label": "Remarques",
+                            "stringValue": "",
+                            "updatedAt": "2023-06-07T12:07:43+02:00"
+                        },
+                        {
+                            "id": "Q2hhbXAtMjIxODUzOHwwMUgyQU43NU0xWVY0MEdGVkdCUEFBVlZUOA==",
+                            "__typename": "TextChamp",
+                            "label": "Position du r\u00e9f\u00e9rent",
+                            "stringValue": "",
+                            "updatedAt": "2023-06-07T12:07:43+02:00"
+                        },
+                        {
+                            "id": "Q2hhbXAtMjIxODU0MHwwMUgyQU43NU0xWVY0MEdGVkdCUEFBVlZUOA==",
+                            "__typename": "TextChamp",
+                            "label": "Motif.s (obligatoire.s en cas de r\u00e9serve ou de refus)",
+                            "stringValue": "",
+                            "updatedAt": "2023-06-07T12:07:43+02:00"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
